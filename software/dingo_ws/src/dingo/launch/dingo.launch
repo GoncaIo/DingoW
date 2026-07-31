@@ -1,0 +1,24 @@
+<launch>
+    <arg name="is_sim" default="0"/>
+    <arg name="is_physical" default="1"/>
+    <arg name="use_joystick" default="1"/>
+    <arg name="use_keyboard" default="0"/>
+    <arg name="use_imu" default="1"/>
+
+    <!-- If want to use the joystick, launch joystick node -->
+    <group if="$(arg use_joystick)">
+        <node pkg="joy" type="joy_node" name="JOYSTICK">
+            <param name="autorepeat_rate" value="30"/>
+        </node>
+    </group>
+
+    <group if="$(arg use_keyboard)">
+        <node pkg="dingo_input_interfacing" type="Keyboard.py" name="keyboard_input_listener" output="screen"/>
+    </group>
+
+    <!-- Dingo Driver (servos + wheels + IMU), restarts itself after a servo bus brownout -->
+    <node pkg="dingo" type="dingo_driver.py"
+        name="dingo" args="$(arg is_sim) $(arg is_physical) $(arg use_imu)" output="screen"
+        respawn="true" respawn_delay="3"/>
+</launch>
+

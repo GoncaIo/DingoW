@@ -1,0 +1,26 @@
+# Dingo PS4-button robot launcher (systemd unit, runs on the Pi 5 host).
+#
+# Install:
+#   sudo cp deploy/dingo-launcher.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now dingo-launcher
+#
+# Adjust User= and the two paths below if you cloned the repo somewhere
+# other than /home/goncalo/DingoW.
+
+[Unit]
+Description=Dingo PS4-button robot launcher
+After=docker.service bluetooth.service
+Requires=docker.service
+
+[Service]
+Type=simple
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 /home/goncalo/DingoW/software/start_robot.py
+WorkingDirectory=/home/goncalo/DingoW/software
+Restart=always
+RestartSec=5
+User=goncalo
+
+[Install]
+WantedBy=multi-user.target

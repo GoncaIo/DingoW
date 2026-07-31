@@ -1,0 +1,26 @@
+
+version: '3.4'
+
+services:
+  dingoquadruped:
+    image: dingo_ws
+    network_mode: "host"
+    privileged: true
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined   
+    volumes:
+      - ./dingo_ws/src:/dingo_ws/src
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      # /dev as a volume (not devices:) so hot-plugged and re-enumerated
+      # devices (ttyUSB*, js0) stay visible live; privileged grants access.
+      - /dev:/dev
+    environment:
+      - PYTHONUNBUFFERED=1
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    restart: unless-stopped
