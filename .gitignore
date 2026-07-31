@@ -1,0 +1,87 @@
+# ==========================
+# OS files
+# ==========================
+.DS_Store
+Thumbs.db
+
+# ==========================
+# VS Code
+# ==========================
+.vscode/
+.history/
+
+# ==========================
+# CLion / JetBrains
+# ==========================
+.idea/
+*.iml
+
+# ==========================
+# Python
+# ==========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+
+# ==========================
+# ROS / colcon
+# ==========================
+build/
+install/
+log/
+
+# ==========================
+# CMake
+# ==========================
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+compile_commands.json
+
+# ==========================
+# Temporary files
+# ==========================
+*.tmp
+*.bak
+*.swp
+*.swo
+*~
+
+# ==========================
+# Archives
+# ==========================
+*.zip
+*.7z
+*.rar
+*.tar
+*.gz
+
+# ==========================
+# Logs
+# ==========================
+*.log
+
+# ==========================
+# Fusion 360
+# ==========================
+*.lck
+
+# ==========================
+# Local environment
+# ==========================
+.env
+*.DS_Store
+*.pyc
+**/__pycache__
+dingo_ws/build/*
+dingo_ws/devel/*
+dingo_ws/logs/*
+dingo_ws/.catkin_tools/*
+dingo_ws/.vscode/*
+.vscode/*
+dingo_ws/src/.vscode/*
